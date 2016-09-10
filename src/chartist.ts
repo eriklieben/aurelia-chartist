@@ -1,9 +1,11 @@
-import { bindable, bindingMode } from "aurelia-framework";
+import { bindable, bindingMode, customElement } from "aurelia-framework";
 import * as chartist from "chartist";
 
-export class Chartist {
+@customElement("chartist")
+export class ChartistElement {
 
   public element: HTMLElement;
+  public chart;
 
   @bindable()
   public type: string;
@@ -17,29 +19,17 @@ export class Chartist {
   @bindable({ bindingMode: bindingMode.oneTime })
   public responsiveOptions: Array<chartist.IResponsiveOptionTuple<any>>;
 
-  @bindable({ attribute: "draw"})
-  public drawCall: (data) => void;
+  public eventsToAttachOnAttached = [];
 
-  @bindable({ attribute: "options-changed"})
-  public optionsChangedCall: (data) => void;
-
-  @bindable({ attribute: "animation-beging"})
-  public animationBeginCall: (data) => void;
-
-  @bindable({ attribute: "animation-end"})
-  public animationEndCall: (data) => void;
-
-  @bindable({ attribute: "data-changed"})
-  public dataChangedCall: (data) => void;
-
-  @bindable({ attribute: "created"})
-  public createdCall: (data) => void;
-
-  private chart;
   private readonly allowedTypes = ["Bar", "Line", "Pie"];
 
   public attached() {
     this.renderChart();
+
+    // events that we tried to add before the object was created
+    for (let item of this.eventsToAttachOnAttached) {
+      this.chart.on(item.name, item.value);
+    }
   }
 
   public detached() {
@@ -66,30 +56,6 @@ export class Chartist {
     this.renderChart();
   }
 
-  public drawCallChanged(newValue, oldValue) {
-    this.callChanged("draw", newValue, oldValue);
-  }
-
-  public optionsChangedCallChanged(newValue, oldValue) {
-    this.callChanged("optionsChanged", newValue, oldValue);
-  }
-
-  public animationBeginCallChanged(newValue, oldValue) {
-    this.callChanged("animationBegin", newValue, oldValue);
-  }
-
-  public animationEndCallChanged(newValue, oldValue) {
-    this.callChanged("animationEnd", newValue, oldValue);
-  }
-
-  public dataCallChanged(newValue, oldValue) {
-    this.callChanged("data", newValue, oldValue);
-  }
-
-  public createdCallChanged(newValue, oldValue) {
-    this.callChanged("created", newValue, oldValue);
-  }
-
   private renderChart() {
     if (!this.data) {
       console.warn("Chartist data is not set on element");
@@ -106,22 +72,6 @@ export class Chartist {
 
     if (this.element) {
       this.chart = chartist[this.type](this.element, this.data, this.options, this.responsiveOptions);
-    }
-  }
-
-  private callChanged(event: string, newValue, oldValue) {
-
-    if (!this.element || !this.chart) {
-      return;
-    }
-
-    if (newValue === undefined && oldValue) {
-      this.chart.off(event, oldValue);
-    } else if (newValue) {
-      this.chart.on(event, newValue);
-      if (oldValue) {
-        this.chart.off(event, oldValue);
-      }
     }
   }
 }
