@@ -1,4 +1,4 @@
-System.register(['aurelia-framework', "chartist"], function(exports_1, context_1) {
+System.register(["aurelia-framework", "chartist"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -49,21 +49,6 @@ System.register(['aurelia-framework', "chartist"], function(exports_1, context_1
                 Chartist.prototype.typeChanged = function (newValue, oldValue) {
                     this.renderChart();
                 };
-                Chartist.prototype.renderChart = function () {
-                    if (!this.data) {
-                        console.warn("Chartist data is not set on element");
-                        return;
-                    }
-                    if (this.type === undefined || this.type === null) {
-                        throw new Error("Chartist type attribute must be set");
-                    }
-                    if (this.allowedTypes.indexOf(this.type) === -1) {
-                        throw new Error("Chartist type must be one of the following values: " + this.allowedTypes.join(", "));
-                    }
-                    if (this.element) {
-                        this.chart = chartist[this.type](this.element, this.data, this.options, this.responsiveOptions);
-                    }
-                };
                 Chartist.prototype.drawCallChanged = function (newValue, oldValue) {
                     this.callChanged("draw", newValue, oldValue);
                 };
@@ -81,6 +66,21 @@ System.register(['aurelia-framework', "chartist"], function(exports_1, context_1
                 };
                 Chartist.prototype.createdCallChanged = function (newValue, oldValue) {
                     this.callChanged("created", newValue, oldValue);
+                };
+                Chartist.prototype.renderChart = function () {
+                    if (!this.data) {
+                        console.warn("Chartist data is not set on element");
+                        return;
+                    }
+                    if (this.type === undefined || this.type === null) {
+                        throw new Error("Chartist type attribute must be set");
+                    }
+                    if (this.allowedTypes.indexOf(this.type) === -1) {
+                        throw new Error("Chartist type must be one of the following values: " + this.allowedTypes.join(", "));
+                    }
+                    if (this.element) {
+                        this.chart = chartist[this.type](this.element, this.data, this.options, this.responsiveOptions);
+                    }
                 };
                 Chartist.prototype.callChanged = function (event, newValue, oldValue) {
                     if (!this.element || !this.chart) {

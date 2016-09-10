@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var aurelia_framework_1 = require('aurelia-framework');
+var aurelia_framework_1 = require("aurelia-framework");
 var chartist = require("chartist");
 var Chartist = (function () {
     function Chartist() {
@@ -38,21 +38,6 @@ var Chartist = (function () {
     Chartist.prototype.typeChanged = function (newValue, oldValue) {
         this.renderChart();
     };
-    Chartist.prototype.renderChart = function () {
-        if (!this.data) {
-            console.warn("Chartist data is not set on element");
-            return;
-        }
-        if (this.type === undefined || this.type === null) {
-            throw new Error("Chartist type attribute must be set");
-        }
-        if (this.allowedTypes.indexOf(this.type) === -1) {
-            throw new Error("Chartist type must be one of the following values: " + this.allowedTypes.join(", "));
-        }
-        if (this.element) {
-            this.chart = chartist[this.type](this.element, this.data, this.options, this.responsiveOptions);
-        }
-    };
     Chartist.prototype.drawCallChanged = function (newValue, oldValue) {
         this.callChanged("draw", newValue, oldValue);
     };
@@ -70,6 +55,21 @@ var Chartist = (function () {
     };
     Chartist.prototype.createdCallChanged = function (newValue, oldValue) {
         this.callChanged("created", newValue, oldValue);
+    };
+    Chartist.prototype.renderChart = function () {
+        if (!this.data) {
+            console.warn("Chartist data is not set on element");
+            return;
+        }
+        if (this.type === undefined || this.type === null) {
+            throw new Error("Chartist type attribute must be set");
+        }
+        if (this.allowedTypes.indexOf(this.type) === -1) {
+            throw new Error("Chartist type must be one of the following values: " + this.allowedTypes.join(", "));
+        }
+        if (this.element) {
+            this.chart = chartist[this.type](this.element, this.data, this.options, this.responsiveOptions);
+        }
     };
     Chartist.prototype.callChanged = function (event, newValue, oldValue) {
         if (!this.element || !this.chart) {
