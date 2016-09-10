@@ -1,6 +1,6 @@
 "use strict";
 function configure(config) {
-    config.globalResources("./hello-world");
+    config.globalResources("./chartistElement");
 }
 exports.configure = configure;
 
