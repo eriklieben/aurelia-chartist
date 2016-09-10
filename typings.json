@@ -1,0 +1,6 @@
+{
+  "globalDependencies": {
+    "chartist": "registry:dt/chartist#0.9.5+20160619034222",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255"
+  }
+}
