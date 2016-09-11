@@ -1,6 +1,7 @@
 "use strict";
+require("chartist");
 function configure(config) {
-    config.globalResources(["./charlist", "./charlist-events"]);
+    config.globalResources(["./chartist", "./chartist-events"]);
 }
 exports.configure = configure;
 
