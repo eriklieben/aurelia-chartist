@@ -1,3 +1,3 @@
 export function configure(config) {
-  config.globalResources("./chartistElement");
+  config.globalResources(["./charlist", "./charlist-events"]);
 }
