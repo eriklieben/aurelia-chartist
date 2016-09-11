@@ -1,6 +1,6 @@
 {
   "name": "aurelia-chartist",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "A plugin to use chartist with Aurelia.",
   "keywords": [
     "aurelia",
