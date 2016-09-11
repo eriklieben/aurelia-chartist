@@ -1,3 +1,5 @@
+import "chartist";
+
 export function configure(config) {
-  config.globalResources(["./charlist", "./charlist-events"]);
+  config.globalResources(["./chartist", "./chartist-events"]);
 }
