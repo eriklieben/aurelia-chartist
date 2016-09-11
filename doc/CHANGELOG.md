@@ -1,5 +1,5 @@
 <a name="1.0.0"></a>
-## [0.0.5](https://github.com/eriklieben/aurelia-chartist/compare/v0.0.4...v0.0.5) (2016-09-11)
+## [1.0.0](https://github.com/eriklieben/aurelia-chartist/compare/v0.0.4...v1,0.0) (2016-09-11)
 
 
 ### Bug Fixes
