@@ -11,7 +11,7 @@ System.register(["aurelia-framework", "chartist"], function(exports_1, context_1
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var aurelia_framework_1, chartist;
-    var Chartist;
+    var ChartistElement;
     return {
         setters:[
             function (aurelia_framework_1_1) {
@@ -21,19 +21,24 @@ System.register(["aurelia-framework", "chartist"], function(exports_1, context_1
                 chartist = chartist_1;
             }],
         execute: function() {
-            Chartist = (function () {
-                function Chartist() {
+            ChartistElement = (function () {
+                function ChartistElement() {
+                    this.eventsToAttachOnAttached = [];
                     this.allowedTypes = ["Bar", "Line", "Pie"];
                 }
-                Chartist.prototype.attached = function () {
+                ChartistElement.prototype.attached = function () {
                     this.renderChart();
+                    for (var _i = 0, _a = this.eventsToAttachOnAttached; _i < _a.length; _i++) {
+                        var item = _a[_i];
+                        this.chart.on(item.name, item.value);
+                    }
                 };
-                Chartist.prototype.detached = function () {
+                ChartistElement.prototype.detached = function () {
                     if (this.chart) {
                         this.chart.detach();
                     }
                 };
-                Chartist.prototype.dataChanged = function (newValue, oldValue) {
+                ChartistElement.prototype.dataChanged = function (newValue, oldValue) {
                     if (this.chart) {
                         this.chart.update(this.data, this.options);
                     }
@@ -41,33 +46,15 @@ System.register(["aurelia-framework", "chartist"], function(exports_1, context_1
                         this.renderChart();
                     }
                 };
-                Chartist.prototype.optionsChanged = function (newValue, oldValue) {
+                ChartistElement.prototype.optionsChanged = function (newValue, oldValue) {
                     if (this.chart) {
                         this.chart.update(this.data, this.options);
                     }
                 };
-                Chartist.prototype.typeChanged = function (newValue, oldValue) {
+                ChartistElement.prototype.typeChanged = function (newValue, oldValue) {
                     this.renderChart();
                 };
-                Chartist.prototype.drawCallChanged = function (newValue, oldValue) {
-                    this.callChanged("draw", newValue, oldValue);
-                };
-                Chartist.prototype.optionsChangedCallChanged = function (newValue, oldValue) {
-                    this.callChanged("optionsChanged", newValue, oldValue);
-                };
-                Chartist.prototype.animationBeginCallChanged = function (newValue, oldValue) {
-                    this.callChanged("animationBegin", newValue, oldValue);
-                };
-                Chartist.prototype.animationEndCallChanged = function (newValue, oldValue) {
-                    this.callChanged("animationEnd", newValue, oldValue);
-                };
-                Chartist.prototype.dataCallChanged = function (newValue, oldValue) {
-                    this.callChanged("data", newValue, oldValue);
-                };
-                Chartist.prototype.createdCallChanged = function (newValue, oldValue) {
-                    this.callChanged("created", newValue, oldValue);
-                };
-                Chartist.prototype.renderChart = function () {
+                ChartistElement.prototype.renderChart = function () {
                     if (!this.data) {
                         console.warn("Chartist data is not set on element");
                         return;
@@ -82,63 +69,29 @@ System.register(["aurelia-framework", "chartist"], function(exports_1, context_1
                         this.chart = chartist[this.type](this.element, this.data, this.options, this.responsiveOptions);
                     }
                 };
-                Chartist.prototype.callChanged = function (event, newValue, oldValue) {
-                    if (!this.element || !this.chart) {
-                        return;
-                    }
-                    if (newValue === undefined && oldValue) {
-                        this.chart.off(event, oldValue);
-                    }
-                    else if (newValue) {
-                        this.chart.on(event, newValue);
-                        if (oldValue) {
-                            this.chart.off(event, oldValue);
-                        }
-                    }
-                };
                 __decorate([
                     aurelia_framework_1.bindable(), 
                     __metadata('design:type', String)
-                ], Chartist.prototype, "type", void 0);
+                ], ChartistElement.prototype, "type", void 0);
                 __decorate([
                     aurelia_framework_1.bindable(), 
                     __metadata('design:type', Object)
-                ], Chartist.prototype, "data", void 0);
+                ], ChartistElement.prototype, "data", void 0);
                 __decorate([
                     aurelia_framework_1.bindable(), 
                     __metadata('design:type', Object)
-                ], Chartist.prototype, "options", void 0);
+                ], ChartistElement.prototype, "options", void 0);
                 __decorate([
                     aurelia_framework_1.bindable({ bindingMode: aurelia_framework_1.bindingMode.oneTime }), 
                     __metadata('design:type', Array)
-                ], Chartist.prototype, "responsiveOptions", void 0);
-                __decorate([
-                    aurelia_framework_1.bindable({ attribute: "draw" }), 
-                    __metadata('design:type', Function)
-                ], Chartist.prototype, "drawCall", void 0);
-                __decorate([
-                    aurelia_framework_1.bindable({ attribute: "options-changed" }), 
-                    __metadata('design:type', Function)
-                ], Chartist.prototype, "optionsChangedCall", void 0);
-                __decorate([
-                    aurelia_framework_1.bindable({ attribute: "animation-beging" }), 
-                    __metadata('design:type', Function)
-                ], Chartist.prototype, "animationBeginCall", void 0);
-                __decorate([
-                    aurelia_framework_1.bindable({ attribute: "animation-end" }), 
-                    __metadata('design:type', Function)
-                ], Chartist.prototype, "animationEndCall", void 0);
-                __decorate([
-                    aurelia_framework_1.bindable({ attribute: "data-changed" }), 
-                    __metadata('design:type', Function)
-                ], Chartist.prototype, "dataChangedCall", void 0);
-                __decorate([
-                    aurelia_framework_1.bindable({ attribute: "created" }), 
-                    __metadata('design:type', Function)
-                ], Chartist.prototype, "createdCall", void 0);
-                return Chartist;
+                ], ChartistElement.prototype, "responsiveOptions", void 0);
+                ChartistElement = __decorate([
+                    aurelia_framework_1.customElement("chartist"), 
+                    __metadata('design:paramtypes', [])
+                ], ChartistElement);
+                return ChartistElement;
             }());
-            exports_1("Chartist", Chartist);
+            exports_1("ChartistElement", ChartistElement);
         }
     }
 });

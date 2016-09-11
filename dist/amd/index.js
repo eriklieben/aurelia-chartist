@@ -1,7 +1,7 @@
 define(["require", "exports"], function (require, exports) {
     "use strict";
     function configure(config) {
-        config.globalResources("./chartistElement");
+        config.globalResources(["./charlist", "./charlist-events"]);
     }
     exports.configure = configure;
 });
