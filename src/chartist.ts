@@ -1,7 +1,8 @@
-import { bindable, bindingMode, customElement } from "aurelia-framework";
+import { bindable, bindingMode, customElement, inlineView } from "aurelia-framework";
 import * as chartist from "chartist";
 
 @customElement("chartist")
+@inlineView(`<template><require from="chartist/chartist.min.css" /><div class="chart" ref="element"></div></template>`)
 export class ChartistElement {
 
   public element: HTMLElement;

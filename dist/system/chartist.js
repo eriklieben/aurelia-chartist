@@ -86,7 +86,8 @@ System.register(["aurelia-framework", "chartist"], function(exports_1, context_1
                     __metadata('design:type', Array)
                 ], ChartistElement.prototype, "responsiveOptions", void 0);
                 ChartistElement = __decorate([
-                    aurelia_framework_1.customElement("chartist"), 
+                    aurelia_framework_1.customElement("chartist"),
+                    aurelia_framework_1.inlineView("<template><require from=\"chartist/chartist.min.css\" /><div class=\"chart\" ref=\"element\"></div></template>"), 
                     __metadata('design:paramtypes', [])
                 ], ChartistElement);
                 return ChartistElement;
