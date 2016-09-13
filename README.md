@@ -4,6 +4,22 @@ Aurelia plugin to use [Chartist](https://gionkunz.github.io/chartist-js/index.ht
 
 # Installation
 
+## JSPM
+Install the package:
+
+```
+jspm i aurelia-chartist
+```
+Add the following line to ```src/main.js``` or ```src/main.ts```:
+```diff
+export function configure(aurelia: Aurelia) {
+  aurelia.use
+    .standardConfiguration()
+    .feature('resources')
++    .plugin('aurelia-chartist');
+}
+```
+
 
 ## Aurelia-CLI
 Install the package(s):
