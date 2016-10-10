@@ -1,3 +1,13 @@
+<a name="1.0.2"></a>
+## [1.0.1](https://github.com/eriklieben/aurelia-chartist/compare/v1.0.0...v1.0.1) (2016-10-10)
+
+
+### Bug Fixes
+
+* **css:** corrected the cli installation instructions and add dist to min.css require path, resolves [#1](https://github.com/eriklieben/aurelia-chartist/issues/1) ([94fbc48](https://github.com/eriklieben/aurelia-chartist/commit/94fbc48))
+
+
+
 <a name="1.0.0"></a>
 ## [1.0.0](https://github.com/eriklieben/aurelia-chartist/compare/v0.0.4...v1,0.0) (2016-09-11)
 

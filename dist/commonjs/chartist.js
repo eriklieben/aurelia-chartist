@@ -76,7 +76,7 @@ var ChartistElement = (function () {
     ], ChartistElement.prototype, "responsiveOptions", void 0);
     ChartistElement = __decorate([
         aurelia_framework_1.customElement("chartist"),
-        aurelia_framework_1.inlineView("<template><require from=\"chartist/chartist.min.css\"></require><div class=\"chart\" ref=\"element\"></div></template>"), 
+        aurelia_framework_1.inlineView("<template><require from=\"chartist/dist/chartist.min.css\"></require><div class=\"chart\" ref=\"element\"></div></template>"), 
         __metadata('design:paramtypes', [])
     ], ChartistElement);
     return ChartistElement;
