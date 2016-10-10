@@ -32,10 +32,10 @@ Open up the file ```aurelia_project/aurelia.json``` and add the following in the
 "aurelia-templating-binding",
 +{
 +    "name": "chartist",
-+    "path": "../node_modules/chartist/dist",
-+    "main": "chartist",
++    "path": "../node_modules/chartist/",
++    "main": "./dist/chartist",
 +    "resources": [
-+        "./chartist.min.css"
++        "./dist/chartist.min.css"
 +    ]
 +},          
 +{
